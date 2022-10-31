@@ -1,0 +1,12 @@
+apiVersion: v1
+kind: Pod
+metadata:
+  name: auth-app
+  labels:
+    name: auth-app
+spec:
+  containers:
+    - name: auth-app
+      image: salmomascarenhas/auth-app
+      ports:
+        - containerPort: 3000
