@@ -10,10 +10,14 @@ spec:
   template:
     metadata:
       labels:
-        name: auth-app
+        app: auth-app
     spec:
       containers:
         - name: auth-app
           image: salmomascarenhas/auth-app
+          resources:
+            limits:
+              memory: "128Mi"
+              cpu: "500m"
           ports:
             - containerPort: 3000
