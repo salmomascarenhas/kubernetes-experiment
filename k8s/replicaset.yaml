@@ -1,0 +1,19 @@
+apiVersion: apps/v1
+kind: ReplicaSet
+metadata:
+  name: auth-app
+spec:
+  replicas: 5
+  selector:
+    matchLabels:
+      app: auth-app
+  template:
+    metadata:
+      labels:
+        name: auth-app
+    spec:
+      containers:
+        - name: auth-app
+          image: salmomascarenhas/auth-app
+          ports:
+            - containerPort: 3000
