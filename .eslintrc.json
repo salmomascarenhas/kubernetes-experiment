@@ -1,0 +1,39 @@
+{
+    "env": {
+        "browser": true,
+        "es2021": true
+    },
+    "extends": [
+        "eslint:recommended",
+        "plugin:@typescript-eslint/recommended",
+        "plugin:import/typescript",
+        "plugin:prettier/recommended"
+    ],
+    "overrides": [],
+    "parser": "@typescript-eslint/parser",
+    "parserOptions": {
+        "ecmaVersion": "latest",
+        "sourceType": "module"
+    },
+    "plugins": [
+        "@typescript-eslint",
+        "prettier"
+    ],
+    "rules": {
+        "@typescript-eslint/no-explicit-any": "off",
+        "prettier/prettier": [
+            "error",
+            {
+                "trailingComma": "es5",
+                "singleQuote": true,
+                "printWidth": 130,
+                "tabWidth": 4,
+                "useTabs": true,
+                "bracketSpacing": true
+                //below line only for windows users facing CLRF and eslint/prettier error
+                // non windows users feel free to delete it
+                //"endOfLine": "auto",
+            }
+        ]
+    }
+}

@@ -1,0 +1,339 @@
+{
+    "openapi": "3.0.1",
+    "info": {
+        "version": "1.0.0",
+        "title": "Covid Daily Cases",
+        "description": "Covid Daily Cases API",
+        "termsOfService": "http://api_url/terms/",
+        "license": {
+            "name": "ISC"
+        }
+    },
+    "servers": [
+        {
+            "url": "http://localhost:3000/",
+            "description": "Local server"
+        }
+    ],
+    "paths": {
+        "/": {
+            "get": {
+                "description": "Returns jason with message.",
+                "parameters": [],
+                "requestBody": {
+                    "required": false
+                },
+                "responses": {
+                    "200": {
+                        "description": "OK",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "type": "object",
+                                    "properties": {
+                                        "message": {
+                                            "type": "string",
+                                            "example": "Backend Challenge 2021 🏅 - Covid Daily Cases"
+                                        }
+                                    }
+                                }
+                            }
+                        }
+                    },
+                    "500": {
+                        "description": "Internal Server Error",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "type": "object",
+                                    "properties": {
+                                        "message": {
+                                            "type": "string",
+                                            "example": "Internal Server Error"
+                                        },
+                                        "status": {
+                                            "type": "number",
+                                            "example": "500"
+                                        }
+                                    }
+                                },
+                                "example": {
+                                    "status": "500",
+                                    "message": "Internal Server Error"
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        },
+        "/cases/{date}/count": {
+            "get": {
+                "description": "List all records in the database on the selected day, grouped by country and separated by variant.",
+                "operationId": "variantsCount",
+                "parameters": [
+                    {
+                        "name": "date",
+                        "in": "path",
+                        "schema": {
+                            "type": "string",
+                            "example": "2021-05-17"
+                        },
+                        "required": true
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "Data requested successfully!",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "type": "array",
+                                    "items": {
+                                        "type": "object",
+                                        "properties": {
+                                            "count_cases": {
+                                                "type": "number",
+                                                "example": "1"
+                                            },
+                                            "variant": {
+                                                "type": "string",
+                                                "example": "Iota"
+                                            },
+                                            "location": {
+                                                "type": "string",
+                                                "example": "Bosnia and Herzegovina"
+                                            }
+                                        }
+                                    }
+                                }
+                            }
+                        }
+                    },
+                    "204": {
+                        "description": "No datas available!",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "type": "object",
+                                    "properties": {
+                                        "message": {
+                                            "type": "string",
+                                            "example": "No Content"
+                                        },
+                                        "status": {
+                                            "type": "number",
+                                            "example": "204"
+                                        }
+                                    }
+                                },
+                                "example": {
+                                    "status": "204",
+                                    "message": "No datas available!"
+                                }
+                            }
+                        }
+                    },
+                    "500": {
+                        "description": "Internal Server Error",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "type": "object",
+                                    "properties": {
+                                        "message": {
+                                            "type": "string",
+                                            "example": "Internal Server Error"
+                                        },
+                                        "status": {
+                                            "type": "number",
+                                            "example": "500"
+                                        }
+                                    }
+                                },
+                                "example": {
+                                    "status": "500",
+                                    "message": "Internal Server Error"
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        },
+        "/cases/{date}/cumulative": {
+            "get": {
+                "description": "List all records in the database, returning the sum of cases recorded accordingly from the beginning of the dataset to the selected date, grouped by country and separated by variant.",
+                "operationId": "variantsCumulative",
+                "parameters": [
+                    {
+                        "name": "date",
+                        "in": "path",
+                        "schema": {
+                            "type": "string",
+                            "example": "2021-05-17"
+                        },
+                        "required": true
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "Data requested successfully!",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "type": "array",
+                                    "items": {
+                                        "type": "object",
+                                        "properties": {
+                                            "sum_cases": {
+                                                "type": "number",
+                                                "example": "21"
+                                            },
+                                            "variant": {
+                                                "type": "string",
+                                                "example": "Kappa"
+                                            },
+                                            "location": {
+                                                "type": "string",
+                                                "example": "Bosnia and Herzegovina"
+                                            }
+                                        }
+                                    }
+                                }
+                            }
+                        }
+                    },
+                    "204": {
+                        "description": "No datas available!",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "type": "object",
+                                    "properties": {
+                                        "message": {
+                                            "type": "string",
+                                            "example": "No Content"
+                                        },
+                                        "status": {
+                                            "type": "number",
+                                            "example": "204"
+                                        }
+                                    }
+                                },
+                                "example": {
+                                    "status": "204",
+                                    "message": "No datas available!"
+                                }
+                            }
+                        }
+                    },
+                    "500": {
+                        "description": "Internal Server Error",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "type": "object",
+                                    "properties": {
+                                        "message": {
+                                            "type": "string",
+                                            "example": "Internal Server Error"
+                                        },
+                                        "status": {
+                                            "type": "number",
+                                            "example": "500"
+                                        }
+                                    }
+                                },
+                                "example": {
+                                    "status": "500",
+                                    "message": "Internal Server Error"
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        },
+        "/dates": {
+            "get": {
+                "description": "List available dates in the dataset.",
+                "operationId": "allDatesAvailable",
+                "parameters": [],
+                "responses": {
+                    "200": {
+                        "description": "Data requested successfully!",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "type": "array",
+                                    "items": {
+                                        "type": "object",
+                                        "properties": {
+                                            "id": {
+                                                "type": "string",
+                                                "example": "0dbbd147-1c32-433a-8c8d-829df20fb1bd"
+                                            },
+                                            "date": {
+                                                "type": "string",
+                                                "example": "2021-05-17"
+                                            }
+                                        }
+                                    }
+                                }
+                            }
+                        }
+                    },
+                    "204": {
+                        "description": "No datas available!",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "type": "object",
+                                    "properties": {
+                                        "message": {
+                                            "type": "string",
+                                            "example": "No Content"
+                                        },
+                                        "status": {
+                                            "type": "number",
+                                            "example": "204"
+                                        }
+                                    }
+                                },
+                                "example": {
+                                    "status": "204",
+                                    "message": "No datas available!"
+                                }
+                            }
+                        }
+                    },
+                    "500": {
+                        "description": "Internal Server Error",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "type": "object",
+                                    "properties": {
+                                        "message": {
+                                            "type": "string",
+                                            "example": "Internal Server Error"
+                                        },
+                                        "status": {
+                                            "type": "number",
+                                            "example": "500"
+                                        }
+                                    }
+                                },
+                                "example": {
+                                    "status": "500",
+                                    "message": "Internal Server Error"
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        }
+    }
+}

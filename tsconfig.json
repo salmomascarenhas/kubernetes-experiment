@@ -1,0 +1,36 @@
+{
+  "compilerOptions": {
+    "target": "ES5", /* Set the JavaScript language version for emitted JavaScript and include compatible library declarations. */
+    // "lib": [
+    //   "ESNext"
+    // ],
+    "module": "CommonJS", /* Specify what module code is generated. */
+    // "moduleResolution": "Node",
+    // "noUncheckedIndexedAccess": true,
+    // "strict": true,
+    // "useUnknownInCatchVariables": true,
+    "rootDir": "./",
+    "outDir": "./build",
+    "baseUrl": "./src",
+    "resolveJsonModule": true, /* Enable importing .json files. */
+    // "exactOptionalPropertyTypes": true,
+    // "isolatedModules": true,
+    "allowJs": true, /* Allow JavaScript files to be a part of your program. Use the 'checkJS' option to get errors from these files. */
+    "esModuleInterop": true, /* Emit additional JavaScript to ease support for importing CommonJS modules. This enables 'allowSyntheticDefaultImports' for type compatibility. */
+    "forceConsistentCasingInFileNames": true, /* Ensure that casing is correct in imports. */
+    "noImplicitAny": false, /* Enable error reporting for expressions and declarations with an implied 'any' type. */
+    "skipLibCheck": true /* Skip type checking all .d.ts files. */,
+    "declaration": true,
+    "emitDecoratorMetadata": true,
+    "experimentalDecorators": true,
+  },
+  "include": [
+    "./src/**/*"
+  ],
+  "exclude": [
+    "node_modules",
+    "build",
+    ".eslintrc.json",
+    "nodemon.json"
+  ]
+}
